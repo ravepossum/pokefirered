@@ -987,7 +987,7 @@ static void DrawMultichoiceMenuDynamic(u8 left, u8 top, u8 argc, struct ListMenu
         width = DisplayTextAndGetWidth(items[i].label, width);
     }
 
-    windowHeight = (argc < maxBeforeScroll) ? argc * 2 : maxBeforeScroll * 2;
+    windowHeight = GetMCWindowHeight((argc < maxBeforeScroll) ? argc : maxBeforeScroll);
     newWidth = ConvertPixelWidthToTileWidth(width);
     left = ScriptMenu_AdjustLeftCoordFromWidth(left, newWidth);
     windowId = CreateWindowFromRect(left, top, newWidth, windowHeight);
@@ -1191,6 +1191,10 @@ static u8 GetMCWindowHeight(u8 count)
         return 13;
     case 8:
         return 14;
+    case 9:
+        return 16;
+    case 10:
+        return 18;
     default:
         return 1;
     }
